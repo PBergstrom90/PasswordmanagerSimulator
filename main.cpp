@@ -52,7 +52,7 @@ void adminMenu(){
             std::cin >> username;
             std::cout << "Enter password: ";
             std::cin >> password;
-
+            std::cout << "Account created successfully!" << std::endl;
             break;
         case 2:
             std::cout << "\n--- TEST LOGIN ---" << std::endl;
@@ -66,6 +66,4 @@ void adminMenu(){
             break;
         }
     }
-
-
 };
