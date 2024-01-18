@@ -7,6 +7,7 @@
 #include <openssl/md5.h>
 #include "user.h"
 
+void hashCommonPasswords();
 std::string calculateMD5(const std::string &input);
 void initializeTextFile();
 void adminMenu();
@@ -15,6 +16,7 @@ void adminMenu();
 int main()
 {
     
+    hashCommonPasswords();
     initializeTextFile();
     adminMenu();
     
@@ -25,7 +27,6 @@ std::string calculateMD5(const std::string &input) {
     MD5_CTX md5Context;
     MD5_Init(&md5Context);
     MD5_Update(&md5Context, input.c_str(), input.length());
-
     unsigned char hash[MD5_DIGEST_LENGTH];
     MD5_Final(hash, &md5Context);
 
@@ -43,7 +44,6 @@ void hashCommonPasswords(){
         std::cerr << "Unable to open the password file." << std::endl;
         return;
     }
-
     std::string password;
     while (std::getline(passwordFile, password)) {
         std::string md5Hash = calculateMD5(password);
