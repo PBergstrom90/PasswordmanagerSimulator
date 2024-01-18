@@ -1,7 +1,7 @@
 PROG = main.exe 
 SRC = main.cpp user.cpp
 CFLAGS = -g -std=c++20
-LIBS = 
+LIBS = -L"/Program Files/OpenSSL-Win64/lib" -lssl -lcrypto
 CC=g++
 
 all: $(PROG)

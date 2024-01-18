@@ -3,6 +3,8 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <iomanip>
+#include <openssl/md5.h>
 #include "user.h"
 
 void initializeTextFile();
