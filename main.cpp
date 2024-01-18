@@ -16,7 +16,6 @@ void adminMenu();
 int main()
 {
     
-    hashCommonPasswords();
     initializeTextFile();
     adminMenu();
     
@@ -36,20 +35,6 @@ std::string calculateMD5(const std::string &input) {
     }
 
     return ss.str();
-}
-
-void hashCommonPasswords(){
-    std::ifstream passwordFile("commonpasswords.txt");
-    if (!passwordFile.is_open()) {
-        std::cerr << "Unable to open the password file." << std::endl;
-        return;
-    }
-    std::string password;
-    while (std::getline(passwordFile, password)) {
-        std::string md5Hash = calculateMD5(password);
-        std::cout << "Password: " << password << "\tMD5 Hash: " << md5Hash << std::endl;
-    }
-    passwordFile.close();
 }
 
 void initializeTextFile(){
