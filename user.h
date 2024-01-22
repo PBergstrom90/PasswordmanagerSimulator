@@ -11,19 +11,21 @@
 
 class User {
     public:
-        User(std::string username, std::string password);
+        User(std::string username, std::string password, std::string salt);
         std::string getUsername();
         std::string getPassword();
         void setUsername(std::string username);
         void setPassword(std::string password);
         void printUser();
         User createUser();
-        std::string calculateMD5(std::string &input);
         friend std::istream& operator>>(std::istream& is, User& user);
         friend std::ostream& operator<<(std::ostream& os, const User& user);
     private:
         std::string username;
         std::string password;
+        std::string salt;
 };
+
+std::string calculateMD5(std::string &input);
 
 #endif // __USER_H

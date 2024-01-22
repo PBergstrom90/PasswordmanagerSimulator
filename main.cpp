@@ -8,29 +8,27 @@
 #include "user.h"
 
 void createAccount();
-void initializeTextFile();
+void initializeTextFile(std::vector<User>& users);
 void adminMenu();
 
 // DRIVER CODE
 int main()
 {
-    
-    initializeTextFile();
+    std::vector<User> users;
+    initializeTextFile(users);
     adminMenu();
     
     return 0;
 };
 
-void initializeTextFile(){
+void initializeTextFile(std::vector<User>& users){
     std::ifstream file("users.txt");
     std::string line;
-    std::vector<User> users;
-    while(std::getline(file, line)){
+    while (std::getline(file, line)) {
         std::istringstream iss(line);
-        std::string username;
-        std::string password;
+        std::string username, password, salt;
         iss >> username >> password;
-        User user(username, password);
+        User user(username, password, salt);
         users.push_back(user);
     }
     file.close();
