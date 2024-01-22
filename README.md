@@ -12,6 +12,7 @@ Skriv ett C++ program som  visar en meny
 Vid skapa användare ska du
 - fråga om användarnamn och lösenord
 Användarnamn = epostadress (validera)
+
 Kontrollera så användaren inte redan finns
 Alla lösenord måste uppfylla följande regelverk
 
@@ -24,7 +25,6 @@ Alla lösenord måste uppfylla följande regelverk
 
 Alla användare och lösenord ska lagras i en fil users.txt med formatet
 
-anvnamn:hashpassword
 anvnamn:hashpassword
 
 etc
