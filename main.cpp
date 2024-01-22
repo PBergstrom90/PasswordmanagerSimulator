@@ -4,38 +4,39 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
+#include <locale>
+#include <codecvt>
 #include <openssl/md5.h>
 #include "user.h"
 
 void createAccount();
-void initializeTextFile(std::vector<User>& users);
 void adminMenu();
 
 // DRIVER CODE
 int main()
 {
-    std::vector<User> users;
-    initializeTextFile(users);
+    
     adminMenu();
     
     return 0;
 };
 
-void initializeTextFile(std::vector<User>& users){
-    std::ifstream file("users.txt");
-    std::string line;
-    while (std::getline(file, line)) {
-        std::istringstream iss(line);
-        std::string username, password, salt;
-        iss >> username >> password;
-        User user(username, password, salt);
-        users.push_back(user);
-    }
-    file.close();
-};
-
 void createAccount(){
-    User user = user.createUser();
+    std::ifstream userFile("users.txt");
+    if (!userFile.is_open()) {
+        std::cout << "File not found. Creating a new users.txt file." << std::endl;
+        std::ofstream newFile("users.txt");
+        newFile.close();
+        userFile.open("users.txt");
+    }
+
+    if (userFile.is_open()) {
+        std::cout << "File opened successfully." << std::endl;
+        User user = user.createUser(userFile);
+        userFile.close();  // Close the file after using it
+    } else {
+        std::cout << "Error opening file." << std::endl;
+    }
 };
 
 void adminMenu(){
