@@ -3,14 +3,10 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include <locale>
-#include <codecvt>
-#include <openssl/evp.h>    
-#include <openssl/md5.h>
+#include <openssl/md5.h>    
 
 class User {
     public:
@@ -21,7 +17,6 @@ class User {
         std::string getSalt();
         void setUsername(std::string username);
         void setPassword(std::string password);
-        void printUser();
         User createUser(std::ifstream &userFile);
         friend std::istream& operator>>(std::istream& is, User& user);
         friend std::ostream& operator<<(std::ostream& os, const User& user);

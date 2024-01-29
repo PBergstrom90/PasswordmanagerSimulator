@@ -1,12 +1,8 @@
 #include <iostream>
 #include <string>
-#include <vector>
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include <locale>
-#include <codecvt>
-#include <openssl/md5.h>
 #include "user.h"
 #include "crack.h"
 
@@ -72,12 +68,12 @@ void login() {
                 std::cout << "\nIncorrect password. Please try again." << std::endl;
             }
         } else {
-            std::cout << "\nUsername not found. Please check your username." << std::endl;
+            std::cout << "\nUsername not found. Please try again." << std::endl;
         }
     } else {
         std::cout << "Error opening file." << std::endl;
     }
-}
+};
 
 void adminMenu(){
     bool isRunning = true;

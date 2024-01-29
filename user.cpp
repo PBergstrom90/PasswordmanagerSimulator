@@ -1,15 +1,11 @@
 #include <iostream>
 #include <string>
-#include <vector>
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include <locale>
-#include <codecvt>
 #include <algorithm>
 #include <random>
-#include <openssl/evp.h>
-#include <openssl/md5.h> 
+#include <openssl/md5.h>
 #include "user.h"
 
 
@@ -24,7 +20,7 @@ std::string generateSalt() {
         salt += characters[distribution(gen)];
     }
     return salt;
-}
+};
 
 std::string calculateMD5(std::string &input) {
     MD5_CTX md5Context;
@@ -37,32 +33,32 @@ std::string calculateMD5(std::string &input) {
         ss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(hash[i]);
     }
     return ss.str();
-}
+};
 
 User::User(std::string username, std::string password, std::string salt) : username(username), password(password), salt(salt){
-} 
+};
 User::User() : username(""), password(""), salt("") {
-}
+};
 
 std::string User::getUsername(){
     return username;
-}
+};
 
 std::string User::getPassword(){
     return password;
-}
+};
 
 std::string User::getSalt(){
     return salt;
-}
+};
 
 void User::setUsername(std::string username){
 this->username = username;
-}
+};
 
 void User::setPassword(std::string password){
 this->password = password;
-}
+};
  
 // For reading from file.
 std::istream& operator>>(std::istream& is, User& user) {
@@ -82,34 +78,28 @@ std::istream& operator>>(std::istream& is, User& user) {
         }
     }
     return is;
-}
+};
 
 // For writing to file.
 std::ostream& operator<<(std::ostream& os, const User& user) {
     os << user.username << ':' << user.password << ':' << user.salt;
     return os;
-}
-
-// Console printout.
-void User::printUser(){
-    std::cout << "Username: " << getUsername() << std::endl;
-    std::cout << "Password: " << getPassword() << std::endl;
-}
+};
 
 // Password-check function.
     bool isUppercase(char c) {
         return std::isupper(c) != 0;
-    }
+    };
     bool isLowercase(char c) {
         return std::islower(c) != 0;
-    }
+    };
     bool isDigit(char c) {
         return std::isdigit(c) != 0;
-    }
+    };
     bool isSpecialChar(char c) {
         std::string specialChars = "!@#$%^&*()-_=+[]{}|;:'\",.<>?/";
         return specialChars.find(c) != std::string::npos;
-    }
+    };
     bool isStrongPassword(const std::string& password) {
         bool hasLength = password.length() >= 8;
         bool hasUppercase = std::any_of(password.begin(), password.end(), isUppercase);
@@ -117,7 +107,7 @@ void User::printUser(){
         bool hasNumber = std::any_of(password.begin(), password.end(), isDigit);
         bool hasSpecialChar = std::any_of(password.begin(), password.end(), isSpecialChar);
         return hasLength && hasUppercase && hasLowercase && hasNumber && hasSpecialChar;
-    }
+    };
 
 User User::createUser(std::ifstream &userFile){
     bool repeat = true;
@@ -179,7 +169,6 @@ User User::createUser(std::ifstream &userFile){
         }
     std::cout << "\nUser created successfully!" << std::endl;
     repeat = false;
-    user.printUser();
     return user;
     }
 };
