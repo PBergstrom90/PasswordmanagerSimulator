@@ -8,15 +8,17 @@
 #include <codecvt>
 #include <openssl/md5.h>
 #include "user.h"
+#include "crack.h"
 
 void createAccount();
 void login();
+void crackPassword();
 void adminMenu();
 
 // DRIVER CODE
 int main()
 {
-    
+
     adminMenu();
     
     return 0;
@@ -25,24 +27,24 @@ int main()
 void createAccount(){
     std::ifstream userFile("users.txt");
     if (!userFile.is_open()) {
-        std::cout << "File not found. Creating a new users.txt file." << std::endl;
+        std::cout << "File not found. Creating a new 'users.txt' file." << std::endl;
         std::ofstream newFile("users.txt");
         newFile.close();
         userFile.open("users.txt");
     }
-
     if (userFile.is_open()) {
         std::cout << "File opened successfully." << std::endl;
         User user = user.createUser(userFile);
         userFile.close();  // Close the file after using it
     } else {
-        std::cout << "Error opening file." << std::endl;
+        std::cout << "ERROR: could not open the file." << std::endl;
     }
 };
 
 void login() {
     std::string username;
     std::string password;
+    std::string salt;
     std::cout << "\nEnter username: ";
     std::cin >> username;
     std::ifstream userFile("users.txt");
@@ -52,6 +54,7 @@ void login() {
         while (userFile >> user) {
             if (user.getUsername() == username) {
                 usernameExists = true;
+                salt = user.getSalt();
                 break;
             }
         }
@@ -59,7 +62,9 @@ void login() {
         if (usernameExists) {
             std::cout << "\nEnter password: ";
             std::cin >> password;
-            std::string hashedPassword = calculateMD5(password);
+            // Hash the inputpassword and salt from file, to check for a match.
+            std::string combinedString = password + salt;
+            std::string hashedPassword = calculateMD5(combinedString);
             if (user.getPassword() == hashedPassword) {
                 std::cout << "\nLogin successful!" << std::endl;
                 std::cout << "Welcome: " << user.getUsername() << std::endl;
@@ -80,7 +85,8 @@ void adminMenu(){
     std::cout << "\n--- ADMIN MENU ---" << std::endl;
     std::cout << "1. Create Account" << std::endl;
     std::cout << "2. Test login" << std::endl;
-    std::cout << "3. Exit" << std::endl;
+    std::cout << "3. Crack Password" << std::endl;
+    std::cout << "4. Exit" << std::endl;
     std::cout << "Enter your choice: ";
     int choice = 0;
     std::cin >> choice;
@@ -94,6 +100,10 @@ void adminMenu(){
             login();
             break;
         case 3:
+            std::cout << "\n--- PASSWORDCRACKER ---" << std::endl;
+            crackPassword();
+            break;
+        case 4:
             std::cout << "\nProgram closing... " << std::endl;
             isRunning = false;
             break;

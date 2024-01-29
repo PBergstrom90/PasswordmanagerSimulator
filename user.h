@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <locale>
 #include <codecvt>
+#include <openssl/evp.h>    
 #include <openssl/md5.h>
 
 class User {
@@ -17,6 +18,7 @@ class User {
         User();
         std::string getUsername();
         std::string getPassword();
+        std::string getSalt();
         void setUsername(std::string username);
         void setPassword(std::string password);
         void printUser();
@@ -30,5 +32,7 @@ class User {
 };
 
 std::string calculateMD5(std::string &input);
+std::string generateSalt(); 
+
 
 #endif // __USER_H
