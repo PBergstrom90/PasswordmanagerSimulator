@@ -14,9 +14,7 @@ void adminMenu();
 // DRIVER CODE
 int main()
 {
-
     adminMenu();
-    
     return 0;
 };
 

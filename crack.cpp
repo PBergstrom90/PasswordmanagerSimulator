@@ -106,28 +106,28 @@ void crackSHA256(){
 };
 
 void crackMenu(){
-            std::cout << "1. Convert to MD5" << std::endl;
-            std::cout << "2. Convert to SHA256" << std::endl;
-            std::cout << "3. Crack MD5 hash" << std::endl;
-            std::cout << "4. Crack SHA256 hash" << std::endl;
-            std::cout << "Enter your choice: ";
-            int choice = 0;
-            std::cin >> choice;
-            switch(choice) {
-                case 1:
-                    convertPasswordMD5();
-                    break;
-                case 2:
-                    convertPasswordSHA256();
-                    break;
-                case 3:
-                    crackMD5();
-                    break;
-                case 4:
-                    crackSHA256();
-                    break;
-                default:
-                    std::cout << "\nERROR: Invalid choice. Please try again." << std::endl;
-                    break;
-            }
+    std::cout << "1. Convert to MD5" << std::endl;
+    std::cout << "2. Convert to SHA256" << std::endl;
+    std::cout << "3. Crack MD5 hash" << std::endl;
+    std::cout << "4. Crack SHA256 hash" << std::endl;
+    std::cout << "Enter your choice: ";
+    int choice = 0;
+    std::cin >> choice;
+    switch(choice) {
+        case 1:
+            convertPasswordMD5();
+            break;
+        case 2:
+            convertPasswordSHA256();
+            break;
+        case 3:
+            crackMD5();
+            break;
+        case 4:
+            crackSHA256();
+            break;
+        default:
+            std::cout << "\nERROR: Invalid choice. Please try again." << std::endl;
+            break;
+    }
 };
