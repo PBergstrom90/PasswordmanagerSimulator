@@ -97,14 +97,14 @@ void adminMenu(){
             break;
         case 3:
             std::cout << "\n--- PASSWORDCRACKER ---" << std::endl;
-            crackPassword();
+            crackMenu();
             break;
         case 4:
             std::cout << "\nProgram closing... " << std::endl;
             isRunning = false;
             break;
         default:
-            std::cout << "\nInvalid choice. Please try again." << std::endl;
+            std::cout << "\nERROR: Invalid choice. Please try again." << std::endl;
             break;
         }
     }

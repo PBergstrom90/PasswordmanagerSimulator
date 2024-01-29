@@ -9,7 +9,8 @@
 #include <openssl/md5.h>
 #include <openssl/sha.h>
 
-void crackPassword();
+std::string calculateSHA256(const std::string &input);
+void crackMenu();
 void convertPasswordMD5();
 void convertPasswordSHA256();
 void crackMD5();
