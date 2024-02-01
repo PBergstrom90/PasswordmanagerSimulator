@@ -28,11 +28,11 @@ std::string calculateMD5(std::string &input) {
     MD5_Update(&md5Context, input.c_str(), input.length());
     unsigned char hash[MD5_DIGEST_LENGTH];
     MD5_Final(hash, &md5Context);
-    std::stringstream ss;
+    std::stringstream hexHashStream;
     for (int i = 0; i < MD5_DIGEST_LENGTH; ++i) {
-        ss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(hash[i]);
+        hexHashStream << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(hash[i]);
     }
-    return ss.str();
+    return hexHashStream.str();
 };
 
 User::User(std::string username, std::string password, std::string salt) : username(username), password(password), salt(salt){
