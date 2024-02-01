@@ -8,7 +8,7 @@ This program is a simple password manager developed in C++ with features for cre
 - [Usage](#usage)
 - [File Descriptions](#file-descriptions)
 - [Building the Program](#building-the-program)
-- [License](#license)
+- [Testing](#testing)
 
 ## Installation
 
@@ -33,6 +33,7 @@ The password cracker menu allows you to:
 2. **Convert to SHA256:** Convert a password to its SHA256 hash.
 3. **Crack MD5 Hash:** Crack an MD5 hash and retrieve the original password.
 4. **Crack SHA256 Hash:** Crack a SHA256 hash and retrieve the original password.
+5. **Return:** Return to the main menu.
 
 ## File Descriptions
 
@@ -41,6 +42,7 @@ The password cracker menu allows you to:
 - **user.h:** Header file for the user class and related functions.
 - **crack.cpp:** Implements password cracking functions using MD5 and SHA256.
 - **crack.h:** Header file for password cracking functions.
+- **test.cpp:** Contains Google Test-based unit tests for validating various functionalities of the program.
 - **Makefile:** Makefile for building the program.
 - **commonpasswordsMD5.txt:** File containing common passwords and their MD5 hashes.
 - **commonpasswordsSHA256.txt:** File containing common passwords and their SHA256 hashes.
@@ -48,3 +50,14 @@ The password cracker menu allows you to:
 ## Building the Program
 
 To build the program, make sure you have OpenSSL installed. Modify the `Makefile` if necessary.
+
+## Testing
+
+This project uses Google Test for unit testing. The unit tests are defined in the `test.cpp` file, and the test executable is built using the Makefile. To run the tests, ensure that you have Google Test installed, and then use the following commands:
+
+```bash
+# Build and run the tests
+mingw32-make test
+```
+
+Make sure to replace mingw32-make with make if you are using a different make tool.
