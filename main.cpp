@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
+#include <limits>
 #include "user.h"
 #include "crack.h"
 
@@ -76,14 +77,19 @@ void login() {
 void adminMenu(){
     bool isRunning = true;
     while(isRunning){
+    int choice = 0;
     std::cout << "\n--- ADMIN MENU ---" << std::endl;
     std::cout << "1. Create Account" << std::endl;
     std::cout << "2. Test login" << std::endl;
     std::cout << "3. Crack Password" << std::endl;
     std::cout << "4. Exit" << std::endl;
     std::cout << "Enter your choice: ";
-    int choice = 0;
-    std::cin >> choice;
+    if (!(std::cin >> choice)) {
+        std::cout << "\nERROR: Invalid input. Please enter a valid integer." << std::endl;
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        continue;
+    }
     switch(choice) {
         case 1:
             std::cout << "\n--- CREATE ACCOUNT ---" << std::endl;

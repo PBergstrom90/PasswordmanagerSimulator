@@ -27,7 +27,13 @@ class User {
 };
 
 std::string calculateMD5(std::string &input);
-std::string generateSalt(); 
+std::string generateSalt();
+bool isUppercase(char c);
+bool isLowercase(char c);
+bool isDigit(char c);
+bool isSpecialChar(char c);
+bool isStrongPassword(const std::string& password);
+
 
 
 #endif // __USER_H
